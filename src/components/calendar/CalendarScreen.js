@@ -67,15 +67,15 @@ export const CalendarScreen = () => {
 				endAccessor="end"
 				messages={messages}
 				eventPropGetter={eventStyleGetter}
-				components={{
-					event: CalendarEvent,
-				}}
+				onDoubleClickEvent={onDoubleClick}
+				onSelectEvent={onSelectEvent}
+				onView={onViewChange}
 				onSelectSlot={onSelectSlot}
 				selectable={true}
 				view={lastView}
-				onView={onViewChange}
-				onDoubleClickEvent={onDoubleClick}
-				onSelectEvent={onSelectEvent}
+				components={{
+					event: CalendarEvent,
+				}}
 			/>
 			<AddNewFab />
 			{activeEvent && <DeleteEventFab />}
