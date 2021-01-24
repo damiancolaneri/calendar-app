@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { startLogin } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
+import { startLogin, startRegister } from '../../actions/auth';
+import Swal from 'sweetalert2';
+
 import './login.css';
 
 export const LoginScreen = () => {
@@ -14,10 +16,29 @@ export const LoginScreen = () => {
 
 	const { lEmail, lPassword } = formLoginValues;
 
+	const [formRegisterValues, handleRegisterImputChange] = useForm({
+		rName: 'Nando',
+		rEmail: 'nando@gmail.com',
+		rPassword: '123456',
+		rPassword2: '123456',
+	});
+
+	const { rName, rEmail, rPassword, rPassword2 } = formRegisterValues;
+
 	const handleLogin = (e) => {
 		e.preventDefault();
 
+		if (rPassword !== rPassword2) {
+			return Swal.fire('Error', 'Las contraseñas deben ser iguales', 'error');
+		}
+
 		dispatch(startLogin(lEmail, lPassword));
+	};
+
+	const handleRegister = (e) => {
+		e.preventDefault();
+
+		dispatch(startRegister(rName, rEmail, rPassword));
 	};
 
 	return (
@@ -54,12 +75,15 @@ export const LoginScreen = () => {
 
 				<div className="col-md-6 login-form-2">
 					<h3>Registro</h3>
-					<form>
+					<form onSubmit={handleRegister}>
 						<div className="form-group">
 							<input
 								type="text"
 								className="form-control"
 								placeholder="Nombre"
+								name="rName"
+								value={rName}
+								onChange={handleRegisterImputChange}
 							/>
 						</div>
 						<div className="form-group">
@@ -67,6 +91,9 @@ export const LoginScreen = () => {
 								type="email"
 								className="form-control"
 								placeholder="Correo"
+								name="rEmail"
+								value={rEmail}
+								onChange={handleRegisterImputChange}
 							/>
 						</div>
 						<div className="form-group">
@@ -74,6 +101,9 @@ export const LoginScreen = () => {
 								type="password"
 								className="form-control"
 								placeholder="Contraseña"
+								name="rPassword"
+								value={rPassword}
+								onChange={handleRegisterImputChange}
 							/>
 						</div>
 
@@ -82,6 +112,9 @@ export const LoginScreen = () => {
 								type="password"
 								className="form-control"
 								placeholder="Repita la contraseña"
+								name="rPassword2"
+								value={rPassword2}
+								onChange={handleRegisterImputChange}
 							/>
 						</div>
 

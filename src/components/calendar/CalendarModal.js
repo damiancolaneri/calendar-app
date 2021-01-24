@@ -27,7 +27,7 @@ const now = moment().minutes(0).seconds(0).add(1, 'hours');
 const nowPlus = now.clone().add(1, 'hours');
 
 const initEvent = {
-	title: 'Evento',
+	title: '',
 	notes: '',
 	start: now.toDate(),
 	end: nowPlus.toDate(),
