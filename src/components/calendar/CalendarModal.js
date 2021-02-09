@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
 import {
-	eventAddNew,
+	eventStartAddNew,
 	eventClearActiveEvent,
 	eventUpdated,
 } from '../../actions/events';
@@ -106,7 +106,7 @@ export const CalendarModal = () => {
 			dispatch(eventUpdated(formValues));
 		} else {
 			dispatch(
-				eventAddNew({
+				eventStartAddNew({
 					...formValues,
 					id: new Date().getTime(),
 					user: {

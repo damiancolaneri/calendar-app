@@ -15,6 +15,7 @@ export const AppRouter = () => {
 		dispatch(startChecking());
 	}, [dispatch]);
 
+	// FIXME: El startChecking queda true y no cambia
 	if (checking) {
 		return <h5>Espere...</h5>;
 	}

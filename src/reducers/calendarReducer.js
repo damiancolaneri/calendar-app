@@ -1,24 +1,23 @@
-import moment from 'moment';
-
 import { types } from '../types/types';
 
 const initialState = {
-	events: [
-		{
-			id: new Date().getTime(),
-			title: 'test',
-			start: moment().toDate(),
-			end: moment().add(2, 'hours').toDate(),
-			bgcolor: '#fafafa',
-			notes: 'notas de testing',
-			user: {
-				_id: '123',
-				name: 'Damian',
-			},
-		},
-	],
+	events: [],
 	activeEvent: null,
 };
+
+// ejemplo de tipo de evento
+//{
+//			id: new Date().getTime(),
+//			title: 'test',
+//			start: moment().toDate(),
+//			end: moment().add(2, 'hours').toDate(),
+//			bgcolor: '#fafafa',
+//			notes: 'notas de testing',
+//			user: {
+//				_id: '123',
+//				name: 'Damian',
+//			},
+//		},
 
 export const calendarReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -53,6 +52,12 @@ export const calendarReducer = (state = initialState, action) => {
 				...state,
 				events: state.events.filter((e) => e.id !== state.activeEvent.id),
 				activeEvent: null,
+			};
+
+		case types.eventLoaded:
+			return {
+				...state,
+				events: [...action.payload],
 			};
 
 		default:
