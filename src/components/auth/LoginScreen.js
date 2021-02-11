@@ -28,15 +28,15 @@ export const LoginScreen = () => {
 	const handleLogin = (e) => {
 		e.preventDefault();
 
-		if (rPassword !== rPassword2) {
-			return Swal.fire('Error', 'Las contraseñas deben ser iguales', 'error');
-		}
-
 		dispatch(startLogin(lEmail, lPassword));
 	};
 
 	const handleRegister = (e) => {
 		e.preventDefault();
+
+		if (rPassword !== rPassword2) {
+			return Swal.fire('Error', 'Las contraseñas deben ser iguales', 'error');
+		}
 
 		dispatch(startRegister(rName, rEmail, rPassword));
 	};

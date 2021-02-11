@@ -13,9 +13,8 @@ export const AppRouter = () => {
 
 	useEffect(() => {
 		dispatch(startChecking());
-	}, [dispatch]);
+	}, [dispatch, checking]);
 
-	// FIXME: El startChecking queda true y no cambia
 	if (checking) {
 		return <h5>Espere...</h5>;
 	}
