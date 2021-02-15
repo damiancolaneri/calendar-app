@@ -52,7 +52,7 @@ export const eventstartLoaded = () => {
 	return async (dispatch) => {
 		try {
 			const resp = await fetchConToken('events');
-			const body = resp.json();
+			const body = await resp.json();
 
 			const events = prepareEvents(body.eventos);
 
