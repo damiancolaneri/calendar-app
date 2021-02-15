@@ -8,7 +8,7 @@ import { uiCloseModal } from '../../actions/ui';
 import {
 	eventStartAddNew,
 	eventClearActiveEvent,
-	eventUpdated,
+	eventStartUpdated,
 } from '../../actions/events';
 
 const customStyles = {
@@ -100,21 +100,10 @@ export const CalendarModal = () => {
 			Swal.fire('Error', 'El titulo debe tener mas de 2 caracteres', 'error');
 		}
 
-		//TODO: realizar grabacion en DB
-
 		if (activeEvent) {
-			dispatch(eventUpdated(formValues));
+			dispatch(eventStartUpdated(formValues));
 		} else {
-			dispatch(
-				eventStartAddNew({
-					...formValues,
-					id: new Date().getTime(),
-					user: {
-						_id: '123',
-						name: 'Damian',
-					},
-				})
-			);
+			dispatch(eventStartAddNew(formValues));
 		}
 
 		closeModal();
